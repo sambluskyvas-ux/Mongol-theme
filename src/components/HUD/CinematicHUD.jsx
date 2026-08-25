@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX, RotateCcw, ChevronDown, Music } from 'lucide-react';
-import { TEAM_MEMBERS, WAR_THEME, EMBLEM_SRC, TEAM_VIDEO_SRC, TEAM_POSTER_SRC } from '../../data/team';
+import {
+  TEAM_MEMBERS,
+  WAR_THEME,
+  EMBLEM_SRC,
+  TEAM_VIDEO_SRC,
+  TEAM_POSTER_SRC,
+  ENEMY_DEFEAT_VIDEO_SRC,
+} from '../../data/team';
 import { CAMPAIGN_CONTENT } from '../../data/content';
 
 export const CinematicHUD = ({ progress }) => {
@@ -11,6 +18,7 @@ export const CinematicHUD = ({ progress }) => {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  const finalVideoRef = useRef(null);
 
   useEffect(() => {
     const audio = new Audio(WAR_THEME.src);
@@ -36,6 +44,17 @@ export const CinematicHUD = ({ progress }) => {
       audio.src = '';
     };
   }, []);
+
+  useEffect(() => {
+    if (!isFinal || !finalVideoRef.current) return;
+
+    const video = finalVideoRef.current;
+    video.muted = true;
+    video.playsInline = true;
+    video.play().catch(() => {
+      console.warn('Final defeat video autoplay was blocked by the browser.');
+    });
+  }, [isFinal]);
 
   // Jump to specific scroll progress
   const jumpToProgress = (targetProg) => {
@@ -315,6 +334,22 @@ export const CinematicHUD = ({ progress }) => {
         {/* Chapter 04: Grand Victory */}
         {isFinal && (
           <div className="space-y-4 transition-opacity duration-700 animate-fadeIn max-w-4xl">
+            <div className="relative overflow-hidden border border-mongol-gold/70 bg-black/90 p-1 shadow-[0_0_20px_rgba(140,98,57,0.25)] max-w-3xl mx-auto">
+              <video
+                ref={finalVideoRef}
+                className="block w-full aspect-video object-cover bg-black"
+                controls
+                autoPlay
+                muted
+                playsInline
+                preload="auto"
+                aria-label="Enemy defeat scene video"
+              >
+                <source src={ENEMY_DEFEAT_VIDEO_SRC} type="video/mp4" />
+                Your browser does not support the enemy defeat video.
+              </video>
+            </div>
+
             <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-widest metal-text leading-tight">
               {CAMPAIGN_CONTENT.final.line1} {CAMPAIGN_CONTENT.final.line2} {CAMPAIGN_CONTENT.final.line3}
             </h2>
