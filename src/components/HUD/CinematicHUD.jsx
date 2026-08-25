@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX, RotateCcw, ChevronDown, Music } from 'lucide-react';
-import { TEAM_MEMBERS, WAR_THEME, EMBLEM_SRC } from '../../data/team';
+import { TEAM_MEMBERS, WAR_THEME, EMBLEM_SRC, TEAM_VIDEO_SRC, TEAM_POSTER_SRC } from '../../data/team';
 import { CAMPAIGN_CONTENT } from '../../data/content';
 
 export const CinematicHUD = ({ progress }) => {
@@ -241,6 +241,36 @@ export const CinematicHUD = ({ progress }) => {
                   </div>
                 );
               })}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-4 items-stretch pt-2 text-left">
+              <div className="relative overflow-hidden border border-mongol-gold/70 bg-black/90 p-1 shadow-[0_0_20px_rgba(140,98,57,0.25)]">
+                <video
+                  className="block w-full aspect-video object-cover bg-black"
+                  controls
+                  preload="metadata"
+                  poster={TEAM_POSTER_SRC}
+                  aria-label="Usman and Eric teammate video"
+                >
+                  <source src={TEAM_VIDEO_SRC} type="video/mp4" />
+                  Your browser does not support the teammate video.
+                </video>
+              </div>
+              <div className="border border-mongol-bronze/60 bg-black/85 p-4 sm:p-5 flex flex-col justify-center backdrop-blur-md">
+                <span className="text-[10px] font-mono tracking-cinematic text-mongol-gold">
+                  WARBAND DISPATCH // 01
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black tracking-widest text-mongol-dirtyIvory mt-2">
+                  USMAN &amp; ERIC
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mt-2 max-w-md">
+                  Two blades. One formation. A field record from the heart of the 313 warband.
+                </p>
+                <div className="flex items-center gap-2 mt-4 text-[9px] font-mono tracking-widest text-mongol-gold/80">
+                  <span className="w-2 h-2 bg-mongol-gold rounded-full" />
+                  FIELD RECORDING // PLAY ON COMMAND
+                </div>
+              </div>
             </div>
           </div>
         )}

@@ -14,6 +14,7 @@ export const TEAM_MEMBERS = [
 export const TEAM_POSTER_SRC = '/images/team-poster.jpg';
 export const BANNER_SRC = '/images/team-poster.jpg';
 export const EMBLEM_SRC = '/images/the-cleaving-hooves-emblem.png';
+export const TEAM_VIDEO_SRC = '/videos/usman-eric.mp4';
 export const WAR_THEME = {
   title: 'Wolf Totem',
   artist: 'The HU',
