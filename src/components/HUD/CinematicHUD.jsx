@@ -6,6 +6,8 @@ import {
   EMBLEM_SRC,
   TEAM_VIDEO_SRC,
   TEAM_POSTER_SRC,
+  KING_SAAD_VIDEO_SRC,
+  KING_SAAD_POSTER_SRC,
   ENEMY_DEFEAT_VIDEO_SRC,
 } from '../../data/team';
 import { CAMPAIGN_CONTENT } from '../../data/content';
@@ -180,7 +182,7 @@ export const CinematicHUD = ({ progress }) => {
       </header>
 
       {/* Main Center Overlay Content */}
-      <main className="flex flex-col items-center text-center justify-center space-y-4 my-auto w-full px-2">
+      <main className="flex min-h-0 flex-1 flex-col items-center text-center justify-center space-y-4 overflow-y-auto py-4 my-auto w-full px-2">
         {/* Chapter 01: The Warrior Awakens */}
         {isHero && (
           <div className="space-y-4 transition-opacity duration-700 animate-fadeIn max-w-4xl">
@@ -216,6 +218,36 @@ export const CinematicHUD = ({ progress }) => {
                 10 WARRIORS OF THE STEPPE // USMAN (MAIN) &bull; ERIC (TEAM LEAD)
               </p>
             </div>
+            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-4 items-stretch pt-2 text-left">
+              <div className="relative overflow-hidden border border-mongol-gold/70 bg-black/90 p-1 shadow-[0_0_20px_rgba(140,98,57,0.25)]">
+                <video
+                  className="block w-full aspect-video object-cover bg-black"
+                  controls
+                  preload="metadata"
+                  poster={KING_SAAD_POSTER_SRC}
+                  aria-label="King Saad prelude video"
+                >
+                  <source src={KING_SAAD_VIDEO_SRC} type="video/mp4" />
+                  Your browser does not support the King Saad video.
+                </video>
+              </div>
+              <div className="border border-mongol-bronze/60 bg-black/85 p-4 sm:p-5 flex flex-col justify-center backdrop-blur-md">
+                <span className="text-[10px] font-mono tracking-cinematic text-mongol-gold">
+                  BEFORE THE TEAM // KING SAAD
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black tracking-widest text-mongol-dirtyIvory mt-2">
+                  A RULER RISES
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mt-2 max-w-md">
+                  The campaign begins with King Saad’s presence before the warband gathers into formation.
+                </p>
+                <div className="flex items-center gap-2 mt-4 text-[9px] font-mono tracking-widest text-mongol-gold/80">
+                  <span className="w-2 h-2 bg-mongol-gold rounded-full" />
+                  PRELUDE // WATCH BEFORE THE TEAM
+                </div>
+              </div>
+            </div>
+
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 pt-1.5">
               {TEAM_MEMBERS.map((member) => {
                 const isMain = member.id === 'usman';
@@ -291,6 +323,36 @@ export const CinematicHUD = ({ progress }) => {
                 </div>
               </div>
             </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-4 items-stretch pt-2 text-left">
+              <div className="border border-mongol-bronze/60 bg-black/85 p-4 sm:p-5 flex flex-col justify-center backdrop-blur-md">
+                <span className="text-[10px] font-mono tracking-cinematic text-mongol-gold">
+                  AFTER THE TEAM // KING SAAD
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black tracking-widest text-mongol-dirtyIvory mt-2">
+                  THE THRONE REMAINS
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mt-2 max-w-md">
+                  After the warband is assembled, King Saad’s final presence anchors the fight and sets the tone for what follows.
+                </p>
+                <div className="flex items-center gap-2 mt-4 text-[9px] font-mono tracking-widest text-mongol-gold/80">
+                  <span className="w-2 h-2 bg-mongol-gold rounded-full" />
+                  AFTERMATH // CLOSE THE SQUADRON
+                </div>
+              </div>
+              <div className="relative overflow-hidden border border-mongol-gold/70 bg-black/90 p-1 shadow-[0_0_20px_rgba(140,98,57,0.25)]">
+                <video
+                  className="block w-full aspect-video object-cover bg-black"
+                  controls
+                  preload="metadata"
+                  poster={KING_SAAD_POSTER_SRC}
+                  aria-label="King Saad after team video"
+                >
+                  <source src={KING_SAAD_VIDEO_SRC} type="video/mp4" />
+                  Your browser does not support the King Saad video.
+                </video>
+              </div>
+            </div>
           </div>
         )}
 
@@ -337,7 +399,7 @@ export const CinematicHUD = ({ progress }) => {
             <div className="relative overflow-hidden border border-mongol-gold/70 bg-black/90 p-1 shadow-[0_0_20px_rgba(140,98,57,0.25)] max-w-3xl mx-auto">
               <video
                 ref={finalVideoRef}
-                className="block w-full aspect-video object-cover bg-black"
+                className="block w-full max-h-[38vh] aspect-video object-contain bg-black"
                 controls
                 autoPlay
                 muted
