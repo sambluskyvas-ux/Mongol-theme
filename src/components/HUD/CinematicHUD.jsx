@@ -312,16 +312,19 @@ export const CinematicHUD = ({ progress }) => {
                 </div>
               </div>
               <div className="relative overflow-hidden border border-mongol-gold/70 bg-black/90 p-1 shadow-[0_0_20px_rgba(140,98,57,0.25)]">
-                <video
-                  className="block w-full aspect-video object-cover bg-black"
-                  controls
-                  preload="metadata"
-                  poster={KING_SAAD_POSTER_SRC}
-                  aria-label={`${KING_SAAD_NAME} after team video`}
-                >
-                  <source src={KING_SAAD_VIDEO_SRC} type="video/mp4" />
-                  Your browser does not support the {KING_SAAD_NAME} video.
-                </video>
+                <div className="w-full aspect-video overflow-hidden bg-black">
+                  <video
+                    className="block w-full h-full object-cover object-center bg-black"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={KING_SAAD_POSTER_SRC}
+                    aria-label={`${KING_SAAD_NAME} after team video`}
+                  >
+                    <source src={KING_SAAD_VIDEO_SRC} type="video/mp4" />
+                    Your browser does not support the {KING_SAAD_NAME} video.
+                  </video>
+                </div>
               </div>
             </div>
           </div>
